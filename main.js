@@ -43,11 +43,9 @@ const mergeSort = function mergeSort(array) {
   if (array.length < 2) {
     return array;
   }
-  const length = array.length;
-  const leftHalfLength = parseInt(length / 2);
 
-  const leftHalf = array.slice(0, leftHalfLength);
-  const rightHalf = array.slice(leftHalfLength, length);
+  const leftHalf = array.slice(0, parseInt(array.length / 2));
+  const rightHalf = array.slice(parseInt(array.length / 2), array.length);
 
   const leftSorted = mergeSort(leftHalf);
   const rightSorted = mergeSort(rightHalf);
