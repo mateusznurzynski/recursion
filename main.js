@@ -38,3 +38,42 @@ const fibsRec = function fibsRec(desiredLength) {
 
 console.log(fibsRec(7));
 console.log(fibsRec(40));
+
+const mergeSort = function mergeSort(array) {
+  if (array.length < 2) {
+    return array;
+  }
+  const length = array.length;
+  const leftHalfLength = parseInt(length / 2);
+
+  const leftHalf = array.slice(0, leftHalfLength);
+  const rightHalf = array.slice(leftHalfLength, length);
+
+  const leftSorted = mergeSort(leftHalf);
+  const rightSorted = mergeSort(rightHalf);
+
+  const leftSortedLength = leftSorted.length;
+  const rightSortedLength = rightSorted.length;
+  const totalLength = leftSortedLength + rightSortedLength;
+
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  const resultArray = [];
+
+  while (resultArray.length < totalLength) {
+    if (leftIndex + 1 > leftSortedLength) {
+      resultArray.push(rightSorted[rightIndex++]);
+    } else if (rightIndex + 1 > rightSortedLength) {
+      resultArray.push(leftSorted[leftIndex++]);
+    } else if (leftSorted[leftIndex] < rightSorted[rightIndex]) {
+      resultArray.push(leftSorted[leftIndex++]);
+    } else {
+      resultArray.push(rightSorted[rightIndex++]);
+    }
+  }
+
+  return resultArray;
+};
+
+console.log(mergeSort([5, 2, 3, 4, 1]));
